@@ -1,0 +1,40 @@
+<idea-plugin>
+    <id>online.githuboy.dy.danmaku.client</id>
+    <name>DouyuDanmaku Client</name>
+    <version>1.0</version>
+    <vendor email="suchu01@hotmail.com" url="http://githuboy.online">@githuboy</vendor>
+
+    <description><![CDATA[
+      This is a simple danmaku client for douyuTV.<br>
+      <em></em>
+    ]]></description>
+
+    <change-notes><![CDATA[
+      v0.0.1 simple support direct connect to roomId.<br>
+      <em></em>
+    ]]>
+    </change-notes>
+
+    <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/build_number_ranges.html for description -->
+    <idea-version since-build="173.0"/>
+
+    <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
+         on how to target different products -->
+    <!-- uncomment to enable plugin in all products
+    <depends>com.intellij.modules.lang</depends>
+    -->
+
+    <extensions defaultExtensionNs="com.intellij">
+        <!-- Add your extensions here -->
+        <toolWindow id="DouyuDanmaku Client" secondary="true" anchor="right" factoryClass="DanmakuToolWindow"></toolWindow>
+    </extensions>
+
+    <actions>
+        <!-- Add your actions here -->
+
+        <action id="EditTest" class="WindowMenuAction" text="TestAction" description="this is a test action">
+            <add-to-group group-id="WindowMenu" anchor="last"/>
+        </action>
+    </actions>
+
+</idea-plugin>
