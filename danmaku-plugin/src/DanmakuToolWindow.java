@@ -12,7 +12,6 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.util.Date;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
@@ -39,6 +38,7 @@ public class DanmakuToolWindow implements ToolWindowFactory, MessageListener {
         ContentFactory contentFactory = ContentFactory.SERVICE.getInstance();
         Content content = contentFactory.createContent(test, "", false);
         toolWindow.getContentManager().addContent(content);
+
         executor = Executors.newFixedThreadPool(1);
         client = new DanmakuClient();
         client.setMessageListener(this);
