@@ -151,7 +151,7 @@ public class DanmakuClient implements MessageListener {
 
     class RequestHandler implements Runnable {
         private Socket socket;
-        boolean stop;
+        private volatile boolean stop;
         private String roomId;
 
         public void setRoomId(String roomId) {
@@ -210,7 +210,7 @@ public class DanmakuClient implements MessageListener {
                     decode.parse(str);
                     if (decode.getItem("type").equals("loginres")) {
                         //login res
-                        listener.onLoginRespMessage("success login to room:" + this.roomId+"\r\n"+decode.rawString);
+                        listener.onLoginRespMessage("success login to room:" + this.roomId + "\r\n" + decode.rawString);
                         System.out.println("received loginres.");
                         sendmsg(dos, "type@=joingroup/rid@=" + roomId + "/gid@=-9999/");
                     } else if (decode.getItem("type").equals("chatmsg")) {
