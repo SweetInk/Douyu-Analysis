@@ -1,7 +1,7 @@
 <idea-plugin>
     <id>online.githuboy.dy.danmaku.client</id>
     <name>DouyuDanmaku Client</name>
-    <version>1.0</version>
+    <version>0.0.2</version>
     <vendor email="suchu01@hotmail.com" url="http://githuboy.online">@githuboy</vendor>
 
     <description><![CDATA[
@@ -10,6 +10,7 @@
     ]]></description>
 
     <change-notes><![CDATA[
+      v0.0.2 fixed mutiple window use the shared toolWindow Panel.<br>
       v0.0.1 simple support direct connect to roomId.<br>
       <em></em>
     ]]>
@@ -26,7 +27,7 @@
 
     <extensions defaultExtensionNs="com.intellij">
         <!-- Add your extensions here -->
-        <toolWindow id="DouyuDanmaku Client" secondary="true" anchor="right" factoryClass="DanmakuToolWindow"></toolWindow>
+        <toolWindow id="DouyuDanmaku Client" secondary="true" anchor="right" factoryClass="DanmakuToolwindow" canCloseContents="true"></toolWindow>
     </extensions>
 
     <actions>
