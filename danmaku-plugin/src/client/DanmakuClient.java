@@ -36,6 +36,10 @@ public class DanmakuClient implements MessageListener {
         this.roomId = roomId;
     }
 
+    public String getRoomId() {
+        return this.roomId;
+    }
+
     public void setMessageListener(MessageListener listener) {
         if (null == listener) {
             throw new IllegalArgumentException("messageListener must not be null");
