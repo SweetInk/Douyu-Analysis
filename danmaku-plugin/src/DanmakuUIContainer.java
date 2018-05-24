@@ -1,12 +1,7 @@
 import client.DanmakuClient;
 import client.MessageListener;
-import com.intellij.openapi.project.Project;
 import com.intellij.openapi.ui.Messages;
 import com.intellij.openapi.wm.ToolWindow;
-import com.intellij.openapi.wm.ToolWindowFactory;
-import com.intellij.ui.content.Content;
-import com.intellij.ui.content.ContentFactory;
-import org.jetbrains.annotations.NotNull;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -16,43 +11,43 @@ import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
 /**
- * Toolwindow
+ * DanmakuToolwindow UI component
+ *
  * @author suchu
  * @since 2018/5/22 15:59
  */
-public class DanmakuToolWindow implements ToolWindowFactory, MessageListener {
+public class DanmakuUIContainer implements MessageListener {
     private JButton connectBtn;
     private ToolWindow myToolWindow;
-    private JPanel test;
+    private JPanel container;
     private JLabel testLabel;
     private JTextArea outputTextArea;
     private JTextField txtRoomId;
     private JScrollPane scrollPanel;
+    private JLabel roomIdLabel;
     Executor executor;
     private volatile boolean started = false;
     private DanmakuClient client;
 
-    @Override
-    public void createToolWindowContent(@NotNull Project project, @NotNull ToolWindow toolWindow) {
 
+    public void setMyToolWindow(ToolWindow toolWindow) {
         this.myToolWindow = toolWindow;
-        ContentFactory contentFactory = ContentFactory.SERVICE.getInstance();
-        Content content = contentFactory.createContent(test, "", false);
-        toolWindow.getContentManager().addContent(content);
+    }
 
+    public JPanel getPanel() {
+        return this.container;
+    }
+
+    public DanmakuUIContainer() {
         executor = Executors.newFixedThreadPool(1);
         client = new DanmakuClient();
         client.setMessageListener(this);
-
-    }
-
-
-    public DanmakuToolWindow() {
         connectBtn.addActionListener((ActionEvent e) -> {
             String roomId = txtRoomId.getText();
-            if (null == roomId && !"".equals(roomId)) {
+            if (null == roomId || !"".equals(roomId)) {
                 Messages.showInfoMessage("please input valid roomId", "warn");
             } else {
+                outputTextArea.append("ready connect to server...\r\n");
                 connectBtn.setEnabled(false);
                 if (!client.isConnected()) {
                     //  connectBtn.setText("stop");
@@ -96,9 +91,6 @@ public class DanmakuToolWindow implements ToolWindowFactory, MessageListener {
         });
     }
 
-    @Override
-    public void init(ToolWindow window) {
-    }
 
     @Override
     public void onChatMessage(String msg) {
@@ -122,6 +114,7 @@ public class DanmakuToolWindow implements ToolWindowFactory, MessageListener {
     public void onConnected(String message) {
         outputTextArea.append("connect to server success\r\n");
         connectBtn.setEnabled(true);
+        roomIdLabel.setText("current roomId:" + client.getRoomId());
         connectBtn.setText("stop");
     }
 
