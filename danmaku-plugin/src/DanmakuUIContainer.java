@@ -34,6 +34,7 @@ public class DanmakuToolWindow implements ToolWindowFactory, MessageListener {
 
     @Override
     public void createToolWindowContent(@NotNull Project project, @NotNull ToolWindow toolWindow) {
+
         this.myToolWindow = toolWindow;
         ContentFactory contentFactory = ContentFactory.SERVICE.getInstance();
         Content content = contentFactory.createContent(test, "", false);
