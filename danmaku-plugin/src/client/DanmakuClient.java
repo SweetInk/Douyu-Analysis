@@ -218,8 +218,9 @@ public class DanmakuClient implements MessageListener {
                         System.out.println("received loginres.");
                         sendmsg(dos, "type@=joingroup/rid@=" + roomId + "/gid@=-9999/");
                     } else if (decode.getItem("type").equals("chatmsg")) {
+                        System.out.println(decode.sItems);
                         String chatMessage = "【" + decode.getItem("nn") + "】:" + decode.getItem("txt");
-                        System.out.println(chatMessage);
+                        //System.out.println(chatMessage);
                         listener.onChatMessage(chatMessage);
                     } else if (decode.getItem("type").equals("error")) {
                         listener.onLoginError(decode.rawString);
@@ -286,6 +287,7 @@ public class DanmakuClient implements MessageListener {
     public static void main(String[] args) {
         DanmakuClient client = new DanmakuClient();
         client.setMessageListener(client);
+        client.setRoomId("288016");
         client.start();
 
     }

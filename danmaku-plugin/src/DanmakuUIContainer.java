@@ -44,12 +44,12 @@ public class DanmakuUIContainer implements MessageListener {
         client.setMessageListener(this);
         connectBtn.addActionListener((ActionEvent e) -> {
             String roomId = txtRoomId.getText();
-            if (null == roomId || !"".equals(roomId)) {
+            if (null == roomId || "".equals(roomId)) {
                 Messages.showInfoMessage("please input valid roomId", "warn");
             } else {
-                outputTextArea.append("ready connect to server...\r\n");
                 connectBtn.setEnabled(false);
                 if (!client.isConnected()) {
+                    outputTextArea.append("ready connect to server...\r\n");
                     //  connectBtn.setText("stop");
                     executor.execute(() -> {
                         client.setRoomId(roomId);
@@ -95,6 +95,7 @@ public class DanmakuUIContainer implements MessageListener {
     @Override
     public void onChatMessage(String msg) {
         outputTextArea.append(msg + "\r\n");
+
         outputTextArea.setCaretPosition(outputTextArea.getText().length());
         //scrollPanel.s
         //outputTextArea.scroll
