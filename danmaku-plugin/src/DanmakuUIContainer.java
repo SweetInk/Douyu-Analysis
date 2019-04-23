@@ -18,7 +18,7 @@ import java.util.concurrent.Executors;
  */
 public class DanmakuUIContainer implements MessageListener {
     private JButton connectBtn;
-    private ToolWindow myToolWindow;
+    private DanmakuToolwindow myToolWindow;
     private JPanel container;
     private JLabel testLabel;
     private JTextArea outputTextArea;
@@ -30,7 +30,7 @@ public class DanmakuUIContainer implements MessageListener {
     private DanmakuClient client;
 
 
-    public void setMyToolWindow(ToolWindow toolWindow) {
+    public void setMyToolWindow(DanmakuToolwindow toolWindow) {
         this.myToolWindow = toolWindow;
     }
 
@@ -95,7 +95,7 @@ public class DanmakuUIContainer implements MessageListener {
     @Override
     public void onChatMessage(String msg) {
         outputTextArea.append(msg + "\r\n");
-
+        myToolWindow.addDanmu(msg);
         outputTextArea.setCaretPosition(outputTextArea.getText().length());
         //scrollPanel.s
         //outputTextArea.scroll
