@@ -1,0 +1,32 @@
+<idea-plugin>
+    <id>online.githuboy.dy-danmaku-plugin</id>
+    <name>Douyu danmaku client</name>
+    <vendor email="suchu01@hotmail.com" url="https://githuboy.online">sweetink</vendor>
+
+    <description><![CDATA[
+   This is a simple plugin for study.<br>
+    <em>just be better!</em>
+    ]]></description>
+
+
+    <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
+         on how to target different products -->
+    <!-- uncomment to enable plugin in all products
+    <depends>com.intellij.modules.lang</depends>
+    -->
+    <depends>com.intellij.modules.lang</depends>
+    <extensions defaultExtensionNs="com.intellij">
+        <!-- Add your extensions here -->
+    </extensions>
+
+    <actions>
+        <!-- Add your actions here -->
+        <group id="MyPlugin.Simple" text="Greeting" description="Greeting menu">
+            <add-to-group group-id="MainMenu" anchor="last"/>
+            <action class="online.githuboy.idea.plugin.dy.HelloAction" id="Myplugin.Textboxes"
+                    text="Hello"
+                    description="say hello"
+            />
+        </group>
+    </actions>
+</idea-plugin>
